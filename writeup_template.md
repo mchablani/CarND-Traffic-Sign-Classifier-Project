@@ -56,7 +56,7 @@ signs data set:
 
 The code for this step is contained in the third code cell of the IPython notebook.  
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+I randomly plotted few images from train-validation split and test set.  Also used the validation1 set from the pickel file for validation that was provided.   After this plot it was obvious that images especially in the valid.p file were very dark and later on when I did prediction on it gave poor results so I decided to do image scaling.
 
 ![alt text][image1]
 
