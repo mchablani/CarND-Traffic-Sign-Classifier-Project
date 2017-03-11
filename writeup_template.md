@@ -99,19 +99,74 @@ X_valid1 = np.array([normalize(rgb2gray(x)) for x in X_valid1]).reshape(-1, 32, 
 
 ####2. Describe how, and identify where in your code, you set up training, validation and testing data. How much data was in each set? Explain what techniques were used to split the data into these sets. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, identify where in your code, and provide example images of the additional data)
 
-The code for splitting the data into training and validation sets is contained in the fifth code cell of the IPython notebook.  
+The code for splitting the data into training and validation sets is contained in the second code cell of the IPython notebook.  
 
-To cross validate my model, I randomly split the training data into a training set and validation set. I did this by ...
+Initially I used validation data from valid.p and training from train.p.  However I found the dataset was quite defferent and this made it hard to evaluate my model.  So I have 2 validation set.  I randomly shuffled the train data and split it into train-validation in a 80-20 split.  validation1 was the data from valid.p. 
 
-My final training set had X number of images. My validation set and test set had Y and Z number of images.
+My final training set had 27839 number of images. My validation set and test set had 6960 and 12630 number of images.
+Validation1 set had 4410 images.
 
-The sixth code cell of the IPython notebook contains the code for augmenting the data set. I decided to generate additional data because ... To add more data to the the data set, I used the following techniques because ... 
+'''
+from sklearn.model_selection import train_test_split
+X_train, X_valid, y_train, y_valid = train_test_split(X_train, y_train, test_size=0.2)
 
-Here is an example of an original image and an augmented image:
+print("Number of training examples =", n_train)
+print("Number of validation examples =", n_valid)
+print("Number of validation1 examples =", n_valid1)
+print("Number of testing examples =", n_test)
 
-![alt text][image3]
+print("Image data shape =", image_shape)
+print("Number of classes =", n_classes)
+'''
+Number of training examples = 27839
+Number of validation examples = 6960
+Number of validation1 examples = 4410
+Number of testing examples = 12630
+Image data shape = (32, 32, 3)
+Number of classes = 43
 
-The difference between the original data set and the augmented data set is the following ... 
+
+The seventh code cell of the IPython notebook contains the code for augmenting the data set. I decided to generate additional data because my train accuracy would be much better than my validation accuracy and both of them plateued at 94% without data augmentation.
+
+To add more data to the the data set, I used the helper function in Keras. 
+'''
+from keras.preprocessing.image import ImageDataGenerator
+# define data preparation
+datagen = ImageDataGenerator(
+#     featurewise_center=True,
+#     featurewise_std_normalization=True,
+#     zca_whitening=True, 
+    rotation_range=40,
+    width_shift_range=0.1,
+    height_shift_range=0.1,
+)
+# fit parameters from data
+datagen.fit(X_train)
+
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    saver = tf.train.Saver()
+    num_examples = len(X_train)
+
+    print("Training...")
+    print()
+
+    for i in range(EPOCHS):
+        if i > EPOCHS/2:
+            rate = 0.001
+        batches = 0
+        X_train, y_train = shuffle(X_train, y_train)
+
+        for batch_x, batch_y in datagen.flow(X_train, y_train, batch_size=BATCH_SIZE):
+#         for offset in range(0, num_examples, BATCH_SIZE):
+#             end = offset + BATCH_SIZE
+#             batch_x, batch_y = X_train[offset:end], y_train[offset:end]
+            batches += 1
+            sess.run(training_operation, feed_dict={x: batch_x, y: batch_y})
+            if batches > (len(X_train) / BATCH_SIZE):
+                break
+
+'''
 
 
 ####3. Describe, and identify where in your code, what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
