@@ -58,21 +58,44 @@ The code for this step is contained in the third code cell of the IPython notebo
 
 I randomly plotted few images from train-validation split and test set.  Also used the validation1 set from the pickel file for validation that was provided.   After this plot it was obvious that images especially in the valid.p file were very dark and later on when I did prediction on it gave poor results so I decided to do image scaling.
 
-![alt text][image1]
-
 ###Design and Test a Model Architecture
 
 ####1. Describe how, and identify where in your code, you preprocessed the image data. What tecniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc.
 
 The code for this step is contained in the fourth code cell of the IPython notebook.
 
-As a first step, I decided to convert the images to grayscale because ...
+Initially I trianed on architecture similar to LeNet but I increased the depth in all convolution layer by factor of 3 to account for more channels in images, there was no data augmentation and only data transform I applied was what was taught in lessons earlier: (x - 128) / 255
+I did this because I felt color is important and conveys critical information for street signs (stop is usually red, etc).
+Using this approach I was able to achieve following performance after 100 epochs: 
+Validation Accuracy = 0.934
+Validation Accuracy1 = 0.780
+Train Accuracy = 0.993
 
-Here is an example of a traffic sign image before and after grayscaling.
+Then I tried converting to rgb2gray() and I got similar perf results but with smaller network (no need to increased the depth in all convolution layer by factor of 3) and training was much faster.  So concluded that color does not add much value on top of shape for the given train/test/valiation data.  Maybe when using network on new data it might come useful to train with color info.  For purpose of this lab it made sense to train and iterate faster.
 
-![alt text][image2]
+I was still getting bad results on Validation Accuracy1 and after looking at these images realised these images in valid.p were much darker. so I applied follwoing normalisation;  Note that I removed dividing by std() as it gave me divide by 0 in some cases and without it I was getting >99% train and validation accuracy so did not seem necessary.  
+```
+def normalize(x):
+    # Stretch the image 
+    max = np.max(x)
+    x = (x/max) * 255
+    # zero mean
+    mu = np.mean(x)
+    x = x - mu
+#     # Normalize
+#     std = np.std(x, axis = 0)
+#     if std.all() > 0:
+#         x /= std
+    return x
 
-As a last step, I normalized the image data because ...
+X_train = np.array([normalize(rgb2gray(x)) for x in X_train]).reshape(-1, 32, 32, 1)
+X_test = np.array([normalize(rgb2gray(x)) for x in X_test]).reshape(-1, 32, 32, 1)
+X_valid = np.array([normalize(rgb2gray(x)) for x in X_valid]).reshape(-1, 32, 32, 1)
+X_valid1 = np.array([normalize(rgb2gray(x)) for x in X_valid1]).reshape(-1, 32, 32, 1)
+
+```
+
+
 
 ####2. Describe how, and identify where in your code, you set up training, validation and testing data. How much data was in each set? Explain what techniques were used to split the data into these sets. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, identify where in your code, and provide example images of the additional data)
 
