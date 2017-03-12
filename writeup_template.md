@@ -209,8 +209,16 @@ The code for calculating the accuracy of the model is located in the sixth cell 
 My final model results were:
 * training set accuracy of 0.993
 * validation set accuracy of 0.988 
-* test set accuracy of 
+* test set accuracy of 0.922
 
+```
+EPOCH 200 ...
+Validation Accuracy = 0.983
+Validation Accuracy1 = 0.939
+Train Accuracy = 0.988
+
+Test Accuracy = 0.922
+```
 
 A well known architecture was chosen:
 * What architecture was chosen?
