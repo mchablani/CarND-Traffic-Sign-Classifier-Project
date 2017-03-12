@@ -198,9 +198,14 @@ My final model consisted of the following layers: (Very similar to LeNet and add
 
 ####4. Describe how, and identify where in your code, you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-The code for training the model is located in the eigth cell of the ipython notebook. 
+The code for training the model is located in the seventh and sixth cell of the ipython notebook. 
 
-To train the model, I used an ....
+To train the model, I used Keras Image data generator to generate minibatches with Images augmented.
+
+Cross entropy was used as loss function, and tf Adam optimizer was used (well knwow optimizer using adaptive learning rates and exponentially decaying average of past squared gradients).  This is basically what was taught in the lab exercises for LeNet.
+
+I tried adaptive learning rate of 0.01 for first 20 epocs and 0.001 later on to speed up the training.  But it gave me worse results overall so I stuck to using rate = 0.001 for all epochs.  
+
 
 ####5. Describe the approach taken for finding a solution. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
