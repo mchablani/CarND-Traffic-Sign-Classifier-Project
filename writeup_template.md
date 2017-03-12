@@ -229,7 +229,9 @@ Here are five German traffic signs that I found on the web:
 ![alt text][image4] ![alt text][image5] ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
-The first image might be difficult to classify because ...
+The first image might be difficult to classify because its taken as a picture in street instead of an isolated sign picture.
+Second image has waterprint of the source of imapge probably "Alamy stock photo" in the center which interfers with other featires in image.
+
 
 ####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. Identify where in your code predictions were made. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
@@ -237,30 +239,43 @@ The code for making predictions on my final model is located in the tenth cell o
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Image			                |     Prediction	        				        	| 
+|:-----------------------------:|:-----------------------------------------------------:| 
+| Stop Sign      		        | Stop sign   								        	| 
+| End of speed limit (80km/h)   | End of no passing by vehicles over 3.5 metric tons	|
+| No entry					    | No entry									        	|
+| Double curve	                | Double curve					 		       	    	|
+| Priority Road			        | Priority Road      					        		|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%.  For the image it got wrong the right one was the one with second highest probability.
+
+
 
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction and identify where in your code softmax probabilities were outputted. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the first image, the model is 100% sure that this is a stop sign (probability of 1.0), and the image does contain a stop sign. 
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+For the second image model got wrong its 95% certain its "End of no passing by vehicles over 3.5 metric tons" and its 4.7% certain its "End of speed limit (80km/h)". When its infact "End of speed limit (80km/h)"
 
+Initially I was surpriced by confidence of wrong prediction however on examining at the image I can see why the presence of watermark can cause model to misclassify with high confidence.
 
-For the second image ... 
+```
+TopKV2(values=array([[  1.00000000e+00,   6.67238309e-09,   1.23930310e-09,
+          1.01220776e-09,   1.19308341e-10],
+       [  9.52170193e-01,   4.73452173e-02,   4.73592168e-04,
+          1.08127433e-05,   1.69840860e-07],
+       [  1.00000000e+00,   1.35709673e-22,   3.50814555e-25,
+          1.73895743e-26,   2.28156278e-28],
+       [  5.90718508e-01,   3.16435546e-01,   9.26056728e-02,
+          9.43992272e-05,   7.85288648e-05],
+       [  5.49613655e-01,   4.49815333e-01,   5.70348289e-04,
+          5.12222414e-07,   1.85180937e-07]], dtype=float32), indices=array([[14,  3, 39, 12, 35],
+       [42,  6, 12,  1, 11],
+       [17, 42, 12, 41,  6],
+       [21, 28, 30, 23, 40],
+       [12, 15, 13,  1,  2]], dtype=int32))
+```
