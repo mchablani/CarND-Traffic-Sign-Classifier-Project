@@ -106,7 +106,7 @@ Initially I used validation data from valid.p and training from train.p.  Howeve
 My final training set had 27839 number of images. My validation set and test set had 6960 and 12630 number of images.
 Validation1 set had 4410 images.
 
-'''
+```
 from sklearn.model_selection import train_test_split
 X_train, X_valid, y_train, y_valid = train_test_split(X_train, y_train, test_size=0.2)
 
@@ -117,7 +117,7 @@ print("Number of testing examples =", n_test)
 
 print("Image data shape =", image_shape)
 print("Number of classes =", n_classes)
-'''
+```
 Number of training examples = 27839
 Number of validation examples = 6960
 Number of validation1 examples = 4410
@@ -129,7 +129,7 @@ Number of classes = 43
 The seventh code cell of the IPython notebook contains the code for augmenting the data set. I decided to generate additional data because my train accuracy would be much better than my validation accuracy and both of them plateued at 94% without data augmentation.
 
 To add more data to the the data set, I used the helper function in Keras. 
-'''
+```
 from keras.preprocessing.image import ImageDataGenerator
 # define data preparation
 datagen = ImageDataGenerator(
@@ -166,7 +166,7 @@ with tf.Session() as sess:
             if batches > (len(X_train) / BATCH_SIZE):
                 break
 
-'''
+```
 
 
 ####3. Describe, and identify where in your code, what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
