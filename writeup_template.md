@@ -263,6 +263,12 @@ For the second image model got wrong its 95% certain its "End of no passing by v
 
 Initially I was surpriced by confidence of wrong prediction however on examining at the image I can see why the presence of watermark can cause model to misclassify with high confidence.
 
+Third image is classified correctly with 100% probability
+
+Forth image is classified correctly with 59% probability
+
+Fifth image is classified correctly with 55% probability
+
 ```
 TopKV2(values=array([[  1.00000000e+00,   6.67238309e-09,   1.23930310e-09,
           1.01220776e-09,   1.19308341e-10],
