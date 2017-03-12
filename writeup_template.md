@@ -226,7 +226,7 @@ A well known architecture was chosen:
 * Why did you believe it would be relevant to the traffic sign application?
     LeNet is simple to understand and debug, gave mostly good results right away.  But I could see train set do better than validation set until I added drpout and data augmentation.
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
+Overall accuracy on train and validation set is comparable which shows there is not much overfillting and also both these accuracy is close to 99% so model is doing a great job.  However accuracy on test set is 92.2% which probably indicates test set is probably different features than train.  So more data augmentation will probably help. 
 
 ###Test a Model on New Images
 
@@ -257,7 +257,7 @@ Here are the results of the prediction:
 
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%.  For the image it got wrong the right one was the one with second highest probability.
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%.  For the image it got wrong the right one was the one with second highest probability.  this seems inline with 92% accuracy observed on test set.
 
 
 
