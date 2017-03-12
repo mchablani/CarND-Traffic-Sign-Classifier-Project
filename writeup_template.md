@@ -22,11 +22,11 @@ The goals / steps of this project are the following:
 [image1]: ./examples/visualization.jpg "Visualization"
 [image2]: ./examples/grayscale.jpg "Grayscaling"
 [image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image4]: ./test/1.jpeg "Traffic Sign 1"
+[image5]: ./test/2.jpeg "Traffic Sign 2"
+[image6]: ./test/3.jpeg "Traffic Sign 3"
+[image7]: ./test/4.jpeg "Traffic Sign 4"
+[image8]: ./test/5.jpeg "Traffic Sign 5"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -214,9 +214,9 @@ My final model results were:
 
 A well known architecture was chosen:
 * What architecture was chosen?
-LeNet with input of 32x32x1 and dropout was added after dense layers to avoid overfitting as dataset was smaller. 
+    LeNet with input of 32x32x1 and dropout was added after dense layers to avoid overfitting as dataset was smaller. 
 * Why did you believe it would be relevant to the traffic sign application?
-LeNet is simple to understand and debug, gave mostly good results right away.  But I could see train set do better than validation set until I added drpout and data augmentation.
+    LeNet is simple to understand and debug, gave mostly good results right away.  But I could see train set do better than validation set until I added drpout and data augmentation.
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
  
 
