@@ -171,9 +171,9 @@ with tf.Session() as sess:
 
 ####3. Describe, and identify where in your code, what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
-The code for my final model is located in the seventh cell of the ipython notebook. 
+The code for my final model is located in the fifth cell of the ipython notebook. 
 
-My final model consisted of the following layers:
+My final model consisted of the following layers: (Very similar to LeNet and added dropouts)
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -204,23 +204,19 @@ To train the model, I used an ....
 
 ####5. Describe the approach taken for finding a solution. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
-The code for calculating the accuracy of the model is located in the ninth cell of the Ipython notebook.
+The code for calculating the accuracy of the model is located in the sixth cell of the Ipython notebook.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 0.993
+* validation set accuracy of 0.988 
+* test set accuracy of 
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to over fitting or under fitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
 
-If a well known architecture was chosen:
+A well known architecture was chosen:
 * What architecture was chosen?
+LeNet with input of 32x32x1 and dropout was added after dense layers to avoid overfitting as dataset was smaller. 
 * Why did you believe it would be relevant to the traffic sign application?
+LeNet is simple to understand and debug, gave mostly good results right away.  But I could see train set do better than validation set until I added drpout and data augmentation.
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
  
 
