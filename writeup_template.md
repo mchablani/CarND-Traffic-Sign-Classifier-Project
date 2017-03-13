@@ -27,6 +27,10 @@ The goals / steps of this project are the following:
 [image6]: ./test/3.jpeg "Traffic Sign 3"
 [image7]: ./test/4.jpeg "Traffic Sign 4"
 [image8]: ./test/5.jpeg "Traffic Sign 5"
+[image9]: ./examples/Train_data.png "Train Data"
+[image10]: ./examples/test_data.png "Test Data"
+[image11]: ./examples/post_data_processing.png "Train Data after preprocessing"
+
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -56,7 +60,13 @@ signs data set:
 
 The code for this step is contained in the third code cell of the IPython notebook.  
 
-I randomly plotted few images from train-validation split and test set.  Also used the validation1 set from the pickel file for validation that was provided.   After this plot it was obvious that images especially in the valid.p file were very dark and later on when I did prediction on it gave poor results so I decided to do image scaling.
+I randomly plotted 1 image for each target class for train and test set.  
+![alt text][image9]
+
+![alt text][image10]
+
+I also plotted 1 image from each class after data preprocessing step.
+![alt text][image11]
 
 ###Design and Test a Model Architecture
 
